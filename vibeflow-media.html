@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibeflow Media — Influencer Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1A1A2E;
+  --navy-light: #16213E;
+  --navy-card: #0F1628;
+  --purple: #7F77DD;
+  --purple-light: #9B95E8;
+  --purple-glow: rgba(127,119,221,0.18);
+  --teal: #1D9E75;
+  --teal-light: #25C490;
+  --white: #FFFFFF;
+  --gray: #A8A8B8;
+  --gray-light: #D0D0DE;
+  --border: rgba(127,119,221,0.2);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  padding: 20px 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(26,26,46,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+.logo { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+.logo span { color: var(--purple); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--gray); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--purple); color: var(--white); border: none;
+  padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 500;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.25s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--purple-light); transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+/* SECTIONS */
+section { padding: 100px 5%; }
+.section-tag {
+  display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--purple); border: 1px solid var(--border);
+  padding: 6px 16px; border-radius: 99px; margin-bottom: 20px;
+  background: var(--purple-glow);
+}
+.section-title { font-family: 'Syne', sans-serif; font-size: clamp(32px, 5vw, 52px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+.section-sub { font-size: 17px; color: var(--gray); max-width: 560px; line-height: 1.7; }
+.highlight { color: var(--purple); }
+.teal { color: var(--teal-light); }
+.center { text-align: center; }
+.center .section-sub { margin: 0 auto 60px; }
+
+/* HERO */
+#home {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 120px;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(90px); opacity: 0.5;
+}
+.orb-1 { width: 500px; height: 500px; background: var(--purple); top: -100px; right: -100px; opacity: 0.12; }
+.orb-2 { width: 350px; height: 350px; background: var(--teal); bottom: 50px; left: -80px; opacity: 0.1; }
+.orb-3 { width: 250px; height: 250px; background: var(--purple); bottom: 200px; right: 30%; opacity: 0.08; }
+
+/* Grid lines */
+.grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(127,119,221,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,119,221,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 750px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--purple-glow); border: 1px solid var(--border);
+  padding: 8px 18px; border-radius: 99px; margin-bottom: 30px;
+  font-size: 13px; color: var(--purple-light);
+}
+.badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal-light); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 800; line-height: 1.05;
+  letter-spacing: -2px; margin-bottom: 24px;
+}
+.hero-sub { font-size: 18px; color: var(--gray); max-width: 520px; margin-bottom: 40px; line-height: 1.7; }
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--purple); color: var(--white);
+  padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  transition: all 0.25s; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 0 30px rgba(127,119,221,0.35);
+}
+.btn-primary:hover { background: var(--purple-light); transform: translateY(-2px); box-shadow: 0 0 50px rgba(127,119,221,0.5); }
+.btn-outline {
+  background: transparent; color: var(--white);
+  padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  border: 1px solid var(--border); transition: all 0.25s; cursor: pointer; font-family: 'DM Sans', sans-serif;
+}
+.btn-outline:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-glow); }
+
+.hero-stats {
+  display: flex; gap: 48px; margin-top: 64px;
+  padding-top: 40px; border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.stat-num { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; color: var(--white); }
+.stat-label { font-size: 13px; color: var(--gray); margin-top: 4px; }
+
+/* ABOUT */
+#about { background: var(--navy-light); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-visual {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.about-hexagons { position: relative; width: 320px; height: 320px; }
+.hex {
+  position: absolute; width: 100px; height: 115px;
+  background: var(--navy-card); border: 1px solid var(--border);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; transition: all 0.3s;
+}
+.hex:hover { border-color: var(--purple); transform: scale(1.08); }
+.hex-1 { top: 10px; left: 50%; transform: translateX(-50%); }
+.hex-2 { top: 90px; left: 20px; }
+.hex-3 { top: 90px; right: 20px; }
+.hex-4 { bottom: 30px; left: 50%; transform: translateX(-50%); }
+.hex-center {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 120px; height: 138px;
+  background: linear-gradient(135deg, var(--purple), var(--teal));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; text-align: center;
+  padding: 20px; line-height: 1.4;
+}
+
+/* NICHES */
+#niches { }
+.niches-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; }
+.niche-card {
+  background: var(--navy-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px 24px;
+  transition: all 0.3s; cursor: default; position: relative; overflow: hidden;
+}
+.niche-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--teal));
+  transform: scaleX(0); transition: transform 0.3s;
+  transform-origin: left;
+}
+.niche-card:hover { border-color: var(--purple); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(127,119,221,0.15); }
+.niche-card:hover::before { transform: scaleX(1); }
+.niche-icon { font-size: 40px; margin-bottom: 20px; }
+.niche-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+.niche-desc { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+/* HOW WE WORK */
+#how { background: var(--navy-light); }
+.steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 60px; position: relative; }
+.steps::before {
+  content: ''; position: absolute;
+  top: 36px; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--purple), var(--teal), transparent);
+}
+.step { text-align: center; padding: 0 16px; position: relative; }
+.step-num {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--navy-card); border: 2px solid var(--purple);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
+  margin: 0 auto 24px; color: var(--purple);
+  box-shadow: 0 0 30px rgba(127,119,221,0.2);
+  position: relative; z-index: 1;
+}
+.step-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.step-desc { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+/* WHY US */
+#why { }
+.why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 60px; }
+.why-card {
+  background: var(--navy-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px;
+  display: flex; gap: 20px; align-items: flex-start;
+  transition: all 0.3s;
+}
+.why-card:hover { border-color: rgba(127,119,221,0.5); background: rgba(15,22,40,0.8); }
+.why-icon {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: var(--purple-glow); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.why-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.why-desc { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+/* SERVICES */
+#services { background: var(--navy-light); }
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 60px; }
+.service-box {
+  background: var(--navy-card); border-radius: 20px;
+  border: 1px solid var(--border); overflow: hidden;
+}
+.service-header {
+  padding: 28px 32px; display: flex; align-items: center; gap: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.service-icon { font-size: 32px; }
+.service-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; }
+.service-sub { font-size: 13px; color: var(--gray); margin-top: 4px; }
+.service-items { padding: 28px 32px; }
+.service-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 0; border-bottom: 1px solid rgba(127,119,221,0.08);
+}
+.service-item:last-child { border: none; }
+.check { color: var(--teal-light); font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.service-item-text { font-size: 15px; }
+
+.commission-box {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(127,119,221,0.1), rgba(29,158,117,0.1));
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 40px; text-align: center;
+}
+.commission-num { font-family: 'Syne', sans-serif; font-size: 72px; font-weight: 800; color: var(--purple); line-height: 1; }
+.commission-label { font-size: 18px; color: var(--gray-light); margin-top: 8px; }
+.commission-note { font-size: 14px; color: var(--gray); margin-top: 12px; }
+
+/* JOIN */
+#join { }
+.join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 60px; }
+.benefits { display: flex; flex-direction: column; gap: 20px; }
+.benefit-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px; background: var(--navy-card);
+  border: 1px solid var(--border); border-radius: 12px; transition: all 0.3s;
+}
+.benefit-item:hover { border-color: rgba(127,119,221,0.4); }
+.benefit-num {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--purple-glow); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--purple);
+  flex-shrink: 0;
+}
+.benefit-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.benefit-desc { font-size: 14px; color: var(--gray); }
+
+.form-box {
+  background: var(--navy-card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px;
+}
+.form-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 13px; color: var(--gray); margin-bottom: 8px; font-weight: 500; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 12px 16px;
+  background: var(--navy-light); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--white); font-size: 15px;
+  font-family: 'DM Sans', sans-serif; outline: none; transition: border 0.2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--purple);
+}
+.form-group select option { background: var(--navy-card); }
+.form-group textarea { height: 100px; resize: vertical; }
+.form-btn {
+  width: 100%; padding: 14px; background: var(--purple);
+  border: none; border-radius: 10px; color: var(--white);
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: all 0.25s;
+  box-shadow: 0 0 30px rgba(127,119,221,0.3);
+}
+.form-btn:hover { background: var(--purple-light); transform: translateY(-1px); }
+.terms-note {
+  font-size: 12px; color: var(--gray); text-align: center; margin-top: 16px; line-height: 1.5;
+}
+
+/* CONTACT */
+#contact { background: var(--navy-light); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; }
+.contact-info { display: flex; flex-direction: column; gap: 24px; }
+.contact-item {
+  display: flex; gap: 16px; align-items: center;
+  padding: 24px; background: var(--navy-card);
+  border: 1px solid var(--border); border-radius: 14px; transition: all 0.3s;
+}
+.contact-item:hover { border-color: var(--purple); }
+.contact-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--purple-glow); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+}
+.contact-label { font-size: 13px; color: var(--gray); margin-bottom: 4px; }
+.contact-val { font-size: 16px; font-weight: 500; }
+
+/* FOOTER */
+footer {
+  background: var(--navy-card); border-top: 1px solid var(--border);
+  padding: 48px 5%; text-align: center;
+}
+.footer-logo { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.footer-logo span { color: var(--purple); }
+.footer-desc { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
+.footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+.footer-links a { font-size: 14px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--purple); }
+.footer-copy { font-size: 13px; color: rgba(168,168,184,0.5); }
+
+/* MOBILE NAV */
+.mobile-menu {
+  display: none; flex-direction: column; gap: 16px;
+  position: fixed; top: 72px; left: 0; right: 0;
+  background: var(--navy-card); padding: 24px 5%;
+  border-bottom: 1px solid var(--border); z-index: 99;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: var(--gray); text-decoration: none; font-size: 16px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+
+/* SCROLL ANIMATION */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .about-grid, .services-grid, .join-grid, .contact-grid { grid-template-columns: 1fr; }
+  .niches-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .steps::before { display: none; }
+  .why-grid { grid-template-columns: 1fr; }
+  .about-visual { display: none; }
+  .commission-box { grid-column: 1; }
+  .hero-stats { gap: 32px; }
+}
+@media (max-width: 500px) {
+  section { padding: 80px 5%; }
+  .niches-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .hero-btns { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">Vibe<span>flow</span> Media</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#join">Join as Creator</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Join as Creator</a>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#join" onclick="toggleMenu()">Join as Creator</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HOME -->
+<section id="home">
+  <div class="hero-bg">
+    <div class="grid-lines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Founded by Nandini Singh · India's Premium Influencer Agency
+    </div>
+    <h1 class="hero-title">We Connect <span class="highlight">Creators</span> with Top <span class="teal">Brands</span></h1>
+    <p class="hero-sub">Vibeflow Media bridges the gap between authentic content creators and industry-leading brands — driving real results through powerful collaborations.</p>
+    <div class="hero-btns">
+      <a href="#join" class="btn-primary">Join as Creator</a>
+      <a href="#contact" class="btn-outline">Work With Us</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Creators Onboarded</div>
+      </div>
+      <div>
+        <div class="stat-num">120+</div>
+        <div class="stat-label">Brand Campaigns</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Core Niches</div>
+      </div>
+      <div>
+        <div class="stat-num">₹2Cr+</div>
+        <div class="stat-label">Creator Earnings</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="section-tag">Who We Are</div>
+      <h2 class="section-title">India's Premium <span class="highlight">Influencer</span> Marketing Studio</h2>
+      <p class="section-sub">Vibeflow Media is a data-driven influencer marketing agency founded by Nandini Singh. We specialize in connecting niche content creators with top-tier brands across Finance, Tech, Digital Products, and Telegram ecosystems — delivering measurable impact and authentic storytelling.</p>
+      <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display:flex;gap:12px;align-items:center;font-size:15px;color:var(--gray-light)">
+          <span style="color:var(--teal-light);font-size:18px">✦</span> Performance-first approach to every campaign
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;font-size:15px;color:var(--gray-light)">
+          <span style="color:var(--teal-light);font-size:18px">✦</span> Deep niche expertise in high-growth sectors
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;font-size:15px;color:var(--gray-light)">
+          <span style="color:var(--teal-light);font-size:18px">✦</span> Transparent, creator-first partnership model
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <div class="about-hexagons">
+        <div class="hex hex-1">📊</div>
+        <div class="hex hex-2">🤖</div>
+        <div class="hex hex-3">💎</div>
+        <div class="hex hex-4">📱</div>
+        <div class="hex-center">Vibe<br>flow<br>Media</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NICHES -->
+<section id="niches">
+  <div class="center reveal">
+    <div class="section-tag">Our Niches</div>
+    <h2 class="section-title">Specialised in <span class="highlight">High-Growth</span> Verticals</h2>
+    <p class="section-sub">We operate exclusively in verticals where engaged audiences drive real conversions and brand value.</p>
+  </div>
+  <div class="niches-grid">
+    <div class="niche-card reveal">
+      <div class="niche-icon">📈</div>
+      <div class="niche-title">Finance & Stock Market</div>
+      <div class="niche-desc">Connect with finance creators who educate millions on investing, trading, and wealth creation — high-intent audiences with strong purchase power.</div>
+    </div>
+    <div class="niche-card reveal">
+      <div class="niche-icon">🤖</div>
+      <div class="niche-title">Tech & AI</div>
+      <div class="niche-desc">Partner with tech reviewers and AI educators who influence product decisions across startups, students, and professionals.</div>
+    </div>
+    <div class="niche-card reveal">
+      <div class="niche-icon">💻</div>
+      <div class="niche-title">Digital Products</div>
+      <div class="niche-desc">Reach audiences primed for courses, SaaS tools, and digital downloads through creators who have mastered soft-sell storytelling.</div>
+    </div>
+    <div class="niche-card reveal">
+      <div class="niche-icon">📡</div>
+      <div class="niche-title">Telegram Channels</div>
+      <div class="niche-desc">Leverage niche Telegram communities with hyper-engaged subscribers for direct, conversion-focused brand promotions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="how">
+  <div class="center reveal">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title">Simple. Transparent. <span class="highlight">Rewarding.</span></h2>
+    <p class="section-sub">Our 4-step process ensures creators and brands both win — every single time.</p>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Join</div>
+      <div class="step-desc">Apply as a creator or brand partner. Share your niche, audience data, and goals with our team.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Pitch</div>
+      <div class="step-desc">We match you with the perfect campaign. Review the brief, rates, and deliverables — accept when ready.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Create</div>
+      <div class="step-desc">Produce authentic content that resonates with your audience. We guide every step of the creative process.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Get Paid</div>
+      <div class="step-desc">Receive your payment securely and on time. Transparent tracking, no hidden cuts — just your fair earnings.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="center reveal">
+    <div class="section-tag">Why Choose Us</div>
+    <h2 class="section-title">Built for Creators Who <span class="highlight">Mean Business</span></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">⚡</div>
+      <div>
+        <div class="why-title">Fast Campaign Turnaround</div>
+        <div class="why-desc">From onboarding to live campaign in under 72 hours. No long approval chains, no unnecessary delays.</div>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🎯</div>
+      <div>
+        <div class="why-title">Niche-Matched Deals</div>
+        <div class="why-desc">We only send you campaigns that fit your content and audience — so every promotion feels genuine, not forced.</div>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">💰</div>
+      <div>
+        <div class="why-title">Guaranteed On-Time Payments</div>
+        <div class="why-desc">Creators are our priority. Every payout is processed on schedule with complete transparency and no surprise deductions.</div>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🤝</div>
+      <div>
+        <div class="why-title">Long-Term Brand Relationships</div>
+        <div class="why-desc">We build recurring brand-creator partnerships, not one-off deals — giving creators a stable, growing income stream.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="center reveal">
+    <div class="section-tag">Services</div>
+    <h2 class="section-title">What We <span class="highlight">Offer</span></h2>
+    <p class="section-sub">Comprehensive solutions for both brands looking to grow and creators looking to monetize.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-box reveal">
+      <div class="service-header">
+        <div class="service-icon">🏢</div>
+        <div>
+          <div class="service-title">For Brands</div>
+          <div class="service-sub">Grow your reach with authentic voices</div>
+        </div>
+      </div>
+      <div class="service-items">
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Influencer identification and vetting across Finance, Tech & AI, Digital, Telegram niches</span></div>
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">End-to-end campaign management — brief to live to reporting</span></div>
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Content review and brand safety checks before publishing</span></div>
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Performance analytics and ROI tracking dashboard</span></div>
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Long-term ambassador program setup and management</span></div>
+      </div>
+    </div>
+    <div class="service-box reveal">
+      <div class="service-header">
+        <div class="service-icon">🎙️</div>
+        <div>
+          <div class="service-title">For Creators</div>
+          <div class="service-sub">Monetize your audience, on your terms</div>
+        </div>
+      </div>
+      <div class="service-items">
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Access to premium brand campaigns matched to your niche</span></div>
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Negotiated rates — we ensure you're always fairly compensated</span></div>
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Dedicated account manager for campaign support</span></div>
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Timely payments with full transparency on campaign earnings</span></div>
+        <div class="service-item"><span class="check">✦</span><span class="service-item-text">Portfolio building through consistent, reputed brand associations</span></div>
+      </div>
+    </div>
+    <div class="commission-box reveal">
+      <div class="commission-num">10%</div>
+      <div class="commission-label">Agency Fee — Charged to the Brand Only</div>
+      <div class="commission-note">Creators receive 100% of their agreed rate. The 10% agency fee is collected from the brand's campaign budget — not from creator earnings. Zero hidden deductions, ever.</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="reveal">
+    <div class="section-tag">Join as Creator</div>
+    <h2 class="section-title">Ready to <span class="highlight">Monetize</span> Your Influence?</h2>
+  </div>
+  <div class="join-grid">
+    <div>
+      <p class="section-sub" style="margin-bottom:32px">Here's what you unlock when you join the Vibeflow Media creator network:</p>
+      <div class="benefits">
+        <div class="benefit-item reveal">
+          <div class="benefit-num">01</div>
+          <div>
+            <div class="benefit-title">Premium Brand Access</div>
+            <div class="benefit-desc">Get direct access to vetted, high-paying brand campaigns in your niche — no cold outreach needed.</div>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-num">02</div>
+          <div>
+            <div class="benefit-title">Guaranteed Payments</div>
+            <div class="benefit-desc">Every campaign payment is secured upfront. You create, you get paid — simple as that.</div>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-num">03</div>
+          <div>
+            <div class="benefit-title">Creative Freedom</div>
+            <div class="benefit-desc">We work with brands who respect creator voice. Your style stays intact — no rigid scripts.</div>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-num">04</div>
+          <div>
+            <div class="benefit-title">Recurring Opportunities</div>
+            <div class="benefit-desc">Build long-term relationships with brands. More campaigns, more income, more stability.</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:28px;padding:20px;background:var(--navy-card);border:1px solid var(--border);border-radius:14px;font-size:13px;color:var(--gray);line-height:1.7">
+        <strong style="color:var(--gray-light);display:block;margin-bottom:8px">Terms & Conditions Summary</strong>
+        By joining Vibeflow Media, creators agree to: (1) Provide accurate audience data during onboarding. (2) Deliver campaign content within agreed timelines. (3) Disclose all sponsored content per platform guidelines. (4) Not misrepresent engagement metrics. (5) Maintain professional communication. Full T&C will be shared upon onboarding.
+      </div>
+    </div>
+    <div class="form-box reveal">
+      <div class="form-title">Apply to Join</div>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Priya Sharma">
+      </div>
+      <div class="form-group">
+        <label>Instagram / YouTube / Telegram Handle</label>
+        <input type="text" placeholder="@yourhandle">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label>Niche</label>
+        <select>
+          <option>Finance & Stock Market</option>
+          <option>Tech & AI</option>
+          <option>Digital Products</option>
+          <option>Telegram Channels</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Approximate Followers / Subscribers</label>
+        <select>
+          <option>1K – 10K</option>
+          <option>10K – 50K</option>
+          <option>50K – 200K</option>
+          <option>200K+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us about your content</label>
+        <textarea placeholder="Briefly describe what you create and who your audience is..."></textarea>
+      </div>
+      <button class="form-btn" onclick="submitForm()">Submit Application ✦</button>
+      <div class="terms-note">By submitting, you agree to our Terms & Conditions. We'll reach out within 48 hours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="center reveal">
+    <div class="section-tag">Contact</div>
+    <h2 class="section-title">Let's <span class="highlight">Connect</span></h2>
+    <p class="section-sub">Whether you're a brand, creator, or just curious — we'd love to hear from you.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item reveal">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email us at</div>
+          <div class="contact-val">vibeflowmedia@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">📸</div>
+        <div>
+          <div class="contact-label">Follow on Instagram</div>
+          <div class="contact-val">@vibeflow.media</div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">⏱️</div>
+        <div>
+          <div class="contact-label">Response time</div>
+          <div class="contact-val">Within 24–48 hours</div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">🌏</div>
+        <div>
+          <div class="contact-label">Based in</div>
+          <div class="contact-val">India · Working Globally</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-box reveal">
+      <div class="form-title">Send a Message</div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>I am a...</label>
+        <select>
+          <option>Brand / Business</option>
+          <option>Content Creator</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us what you're looking for..."></textarea>
+      </div>
+      <button class="form-btn" onclick="submitContact()">Send Message ✦</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Vibe<span>flow</span> Media</div>
+  <div class="footer-desc">India's Premium Influencer Marketing Agency · Founded by Nandini Singh</div>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#join">Join as Creator</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:vibeflowmedia@gmail.com">vibeflowmedia@gmail.com</a>
+    <a href="#">@vibeflow.media</a>
+  </div>
+  <div class="footer-copy">© 2025 Vibeflow Media. All rights reserved.</div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.padding = window.scrollY > 50 ? '14px 5%' : '20px 5%';
+});
+
+function submitForm() {
+  alert('Application submitted! We\'ll get back to you within 48 hours. 🎉');
+}
+function submitContact() {
+  alert('Message sent! We\'ll respond within 24–48 hours. ✦');
+}
+</script>
+</body>
+</html>
